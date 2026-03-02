@@ -37,7 +37,8 @@ def process_data(surname, date, link, url, gc: gspread.Client=google_client):
 
 @bot.message_handler(commands=['start', 'help'])
 def send_welcome(message):
-    bot.reply_to(message, 'Пришлите сообщение в формате, каждое на новой строке(всё в точности как в документе):\nФамилия\nДата\nСсылка на страницу с результатом(только Решу ЕГЭ)')
+    sended = bot.send_message(message.chat.id, 'Пришлите сообщение в формате, каждое на новой строке(всё в точности как в документе):\nФамилия\nДата\nСсылка на страницу с результатом(только Решу ЕГЭ)')
+    bot.pin_chat_message(message.chat.id, sended.message_id)
 
 @bot.message_handler(func=lambda message: True)
 def handle_message(message):

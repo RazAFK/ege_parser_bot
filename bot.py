@@ -37,7 +37,7 @@ def process_data(surname, date, link, url, gc: gspread.Client=google_client):
 
 @bot.message_handler(commands=['start', 'help'])
 def send_welcome(message):
-    sended = bot.send_message(message.chat.id, 'Пришлите сообщение в формате, каждое на новой строке(всё в точности как в документе):\nФамилия\nДата\nСсылка на страницу с результатом(только Решу ЕГЭ)')
+    sended = bot.send_message(message.chat.id, 'Пришлите сообщение в формате, каждое на новой строке(всё в точности как в документе):\nФамилия имя\nДата\nСсылка на страницу с результатом(только Решу ЕГЭ)')
     bot.pin_chat_message(message.chat.id, sended.message_id)
 
 @bot.message_handler(func=lambda message: True)
@@ -49,7 +49,7 @@ def handle_message(message):
             result = process_data(surname, date.strip(), link, table_url)
             bot.reply_to(message, result)
         else:
-            bot.reply_to(message, 'Ошибка! Введите три значения, каждое на новой строке(всё в точности как в документе):\nФамилия\nДата\nСсылка на страницу с результатом(только Решу ЕГЭ)')
+            bot.reply_to(message, 'Ошибка! Введите три значения, каждое на новой строке(всё в точности как в документе):\nФамилия имя\nДата\nСсылка на страницу с результатом(только Решу ЕГЭ)')
             
     except Exception as e:
         bot.reply_to(message, f'Ошибка!\n{e}')

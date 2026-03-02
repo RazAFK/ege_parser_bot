@@ -46,7 +46,7 @@ def handle_message(message):
         parts = message.text.split(sep='\n')
         if len(parts) == 3:
             surname, date, link = parts
-            result = process_data(surname, date.strip(), link, test_url)
+            result = process_data(surname, date.strip(), link, table_url)
             bot.reply_to(message, result)
         else:
             bot.reply_to(message, 'Ошибка! Введите три значения, каждое на новой строке(всё в точности как в документе):\nФамилия\nДата\nСсылка на страницу с результатом(только Решу ЕГЭ)')
